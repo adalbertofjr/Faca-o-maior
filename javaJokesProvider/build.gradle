@@ -4,3 +4,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'junit:junit:4.12'
 }
+
+sourceCompatibility = 1.7
