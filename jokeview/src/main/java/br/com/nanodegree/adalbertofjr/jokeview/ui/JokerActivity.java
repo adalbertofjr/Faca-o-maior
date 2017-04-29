@@ -1,13 +1,10 @@
 package br.com.nanodegree.adalbertofjr.jokeview.ui;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import br.com.nanodegree.adalbertofjr.jokeview.R;
-import br.com.nanodegree.adalbertofjr.jokeview.databinding.ActivityJokerBinding;
 
 /**
  * JokerActivity
@@ -16,16 +13,9 @@ import br.com.nanodegree.adalbertofjr.jokeview.databinding.ActivityJokerBinding;
  */
 
 public class JokerActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityJokerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_joker);
-
-        String joke = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-        if (joke != null) {
-            binding.setJoke(joke);
-        }
+        setContentView(R.layout.activity_joker);
     }
 }
