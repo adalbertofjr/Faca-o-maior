@@ -1,8 +1,8 @@
 package com.udacity.gradle.builditbigger.jokes;
 
-public class Joker {
+public class JokerProvider {
 
-    public String getJoke() {
+    public static String getJoke() {
         return "Uma piada sem graça...";
     }
 }

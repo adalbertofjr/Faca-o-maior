@@ -1,10 +1,12 @@
 package com.udacity.gradle.builditbigger.jokerbackend;
 
 /**
- * The object model for the data we are sending through endpoints
+ * Joke
+ * Created by Adalberto Fernandes Júnior on 30/04/17.
+ * Copyright © 2016. All rights reserved.
  */
-public class MyBean {
 
+public class Joke {
     private String myData;
 
     public String getData() {
