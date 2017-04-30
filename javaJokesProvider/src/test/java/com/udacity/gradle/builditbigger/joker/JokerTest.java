@@ -1,6 +1,6 @@
 package com.udacity.gradle.builditbigger.joker;
 
-import com.udacity.gradle.builditbigger.jokes.Joker;
+import com.udacity.gradle.builditbigger.jokes.JokerProvider;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,15 +14,15 @@ import org.junit.Test;
 
 public class JokerTest {
 
-    private Joker joker;
+    private JokerProvider joker;
 
     @Before
     public void setUp() {
-        joker = new Joker();
+        joker = new JokerProvider();
     }
 
     @Test
     public void testJoker() {
-        Assert.assertEquals(joker.getJoke(), "Uma piada sem graça...");
+        Assert.assertEquals(JokerProvider.getJoke(), "Uma piada sem graça...");
     }
 }
