@@ -47,3 +47,43 @@ dependencies {
     compile project(':jokeview')
     compile project(path: ':jokerbackend', configuration: 'android-endpoints')
 }
+
+task runAppEngine {
+    dependsOn ':jokerbackend:appengineRun'
+    evaluationDependsOn ':jokerbackend'
+    project(":jokerbackend") {
+        appengine {
+            daemon true
+        }
+    }
+
+    doLast {
+        println "App engine iniciado..."
+    }
+}
+
+task stopAppEngine {
+    dependsOn ":jokerbackend:appengineStop"
+    doLast {
+        println "Encerrando app engine..."
+    }
+}
+
+task runAndroidTest {
+    dependsOn "runAppEngine"
+
+    doFirst {
+        println "Iniciando testes..."
+    }
+
+    dependsOn 'connectedAndroidTest'
+    dependsOn ':jokeview:connectedAndroidTest'
+    dependsOn ':javaJokesProvider:test'
+
+    doLast {
+        println "Encerrando testes..."
+    }
+
+    finalizedBy "stopAppEngine"
+}
+
