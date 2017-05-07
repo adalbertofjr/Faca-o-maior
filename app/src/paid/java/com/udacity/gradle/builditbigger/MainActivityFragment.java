@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.udacity.gradle.builditbigger.task.GetJokeEndpointAsyncTask;
 
@@ -16,6 +18,10 @@ import com.udacity.gradle.builditbigger.task.GetJokeEndpointAsyncTask;
 
 public class MainActivityFragment extends Fragment
         implements View.OnClickListener {
+
+    private ProgressBar progressBar;
+    private Button tellJokeButton;
+
     public MainActivityFragment() {
     }
 
@@ -23,7 +29,10 @@ public class MainActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        root.findViewById(R.id.main_btn_tellJoke).setOnClickListener(this);
+        tellJokeButton = (Button) root.findViewById(R.id.main_btn_tellJoke);
+        progressBar = (ProgressBar) root.findViewById(R.id.main_pb_load);
+
+        tellJokeButton.setOnClickListener(this);
 
         return root;
     }
@@ -33,7 +42,16 @@ public class MainActivityFragment extends Fragment
         tellJoke();
     }
 
+    @Override
+    public void onStop() {
+        progressBar.setVisibility(View.GONE);
+        tellJokeButton.setEnabled(true);
+        super.onStop();
+    }
+
     public void tellJoke() {
+        tellJokeButton.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
         new GetJokeEndpointAsyncTask().execute(getActivity());
     }
 }

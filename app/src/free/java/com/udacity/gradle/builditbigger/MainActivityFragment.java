@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,6 +27,9 @@ public class MainActivityFragment extends Fragment
 
     private InterstitialAd interstitialAd;
 
+    private ProgressBar progressBar;
+    private Button tellJokeButton;
+
     public MainActivityFragment() {
     }
 
@@ -32,7 +37,11 @@ public class MainActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        root.findViewById(R.id.main_btn_tellJoke).setOnClickListener(this);
+
+        tellJokeButton = (Button) root.findViewById(R.id.main_btn_tellJoke);
+        progressBar = (ProgressBar) root.findViewById(R.id.main_pb_load);
+
+        tellJokeButton.setOnClickListener(this);
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
@@ -47,7 +56,7 @@ public class MainActivityFragment extends Fragment
             @Override
             public void onAdClosed() {
                 requestNewInterstitial();
-                new GetJokeEndpointAsyncTask().execute(getActivity());
+                tellJoke();
             }
         });
 
@@ -70,12 +79,21 @@ public class MainActivityFragment extends Fragment
         tellJoke();
     }
 
+    @Override
+    public void onStop() {
+        progressBar.setVisibility(View.GONE);
+        tellJokeButton.setEnabled(true);
+        super.onStop();
+    }
+
     public void tellJoke() {
+        tellJokeButton.setEnabled(false);
         if (interstitialAd.isLoaded()) {
             Log.i(LOG_TAG, "Carregando anuncio");
             interstitialAd.show();
         } else {
             Log.i(LOG_TAG, "Buscando piada");
+            progressBar.setVisibility(View.VISIBLE);
             new GetJokeEndpointAsyncTask().execute(getActivity());
         }
     }
