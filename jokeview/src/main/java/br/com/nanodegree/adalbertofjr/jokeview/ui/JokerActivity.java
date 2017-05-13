@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import br.com.nanodegree.adalbertofjr.jokeview.R;
 import br.com.nanodegree.adalbertofjr.jokeview.databinding.ActivityJokerBinding;
@@ -23,9 +24,19 @@ public class JokerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityJokerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_joker);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String joke = getIntent().getStringExtra(Intent.EXTRA_TEXT);
         if (joke != null) {
             binding.setJoke(joke);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
