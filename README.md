@@ -12,3 +12,9 @@ Aprendi a função do Gradle na criação de aplicativos do Android e como usar 
 * Configurar uma compilação de múltiplos projetos para compilar suas bibliotecas e seu aplicativo
 * Usar o plugin Gradle App Engine para implantar um backend
 * Configurar um suíte de teste de integração que é executado no servidor local App Engine de desenvolvimento
+
+
+## Imagens ##
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_1.png" width="203" height="339" />
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_2.png" width="203" height="339" />
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_3.png" width="339" height="203" />
