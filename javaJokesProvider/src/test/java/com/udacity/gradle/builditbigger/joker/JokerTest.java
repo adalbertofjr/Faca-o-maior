@@ -23,6 +23,6 @@ public class JokerTest {
 
     @Test
     public void testJoker() {
-        Assert.assertEquals(JokerProvider.getJoke(), "Uma piada sem graça...");
+        Assert.assertEquals(JokerProvider.getJoke(), JokerProvider.JOKE);
     }
 }

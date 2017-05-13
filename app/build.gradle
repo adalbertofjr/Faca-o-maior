@@ -43,7 +43,47 @@ dependencies {
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile 'com.google.api-client:google-api-client:1.22.0'
     compile 'com.google.http-client:google-http-client-android:1.22.0'
-    freeCompile 'com.google.android.gms:play-services-ads:10.2.1'
+    freeCompile 'com.google.android.gms:play-services-ads:10.2.4'
     compile project(':jokeview')
     compile project(path: ':jokerbackend', configuration: 'android-endpoints')
 }
+
+task runAppEngine {
+    dependsOn ':jokerbackend:appengineRun'
+    evaluationDependsOn ':jokerbackend'
+    project(":jokerbackend") {
+        appengine {
+            daemon true
+        }
+    }
+
+    doLast {
+        println "App engine iniciado..."
+    }
+}
+
+task stopAppEngine {
+    dependsOn ":jokerbackend:appengineStop"
+    doLast {
+        println "Encerrando app engine..."
+    }
+}
+
+task runAndroidTest {
+    dependsOn "runAppEngine"
+
+    doFirst {
+        println "Iniciando testes..."
+    }
+
+    dependsOn 'connectedAndroidTest'
+    dependsOn ':jokeview:connectedAndroidTest'
+    dependsOn ':javaJokesProvider:test'
+
+    doLast {
+        println "Encerrando testes..."
+    }
+
+    finalizedBy "stopAppEngine"
+}
+
