@@ -15,6 +15,6 @@ Aprendi a função do Gradle na criação de aplicativos do Android e como usar 
 
 
 ## Imagens ##
-<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_1.png" width="203" height="339" />
-<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_2.png" width="203" height="339" />
-<img  src="https://raw.githubusercontent.com/adalbertofjr/Popular-Movies/master/app-images/image_3.png" width="339" height="203" />
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Faca-o-maior/master/app-images/image_1.png" width="203" height="339" />
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Faca-o-maior/master/app-images/image_2.png" width="203" height="339" />
+<img  src="https://raw.githubusercontent.com/adalbertofjr/Faca-o-maior/master/app-images/image_3.png" width="339" height="203" />
